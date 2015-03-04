@@ -7,7 +7,17 @@ public partial class MainWindow
 	private global::Gtk.Action Action;
 	private global::Gtk.Action saveAction;
 	private global::Gtk.Action saveAsAction1;
+	private global::Gtk.Action ArchivoAction;
+	private global::Gtk.Action saveAsAction;
+	private global::Gtk.Action stopAction;
+	private global::Gtk.Action newAction;
+	private global::Gtk.Action saveAction1;
+	private global::Gtk.Action saveAsAction2;
+	private global::Gtk.Action openAction1;
+	private global::Gtk.Action quitAction;
+	private global::Gtk.Action quitAction1;
 	private global::Gtk.VBox vBox;
+	private global::Gtk.MenuBar menubar1;
 	private global::Gtk.Label labelSaludo;
 	private global::Gtk.HBox hbox5;
 	private global::Gtk.Label label2;
@@ -29,10 +39,38 @@ public partial class MainWindow
 		w1.Add (this.openAction, null);
 		this.Action = new global::Gtk.Action ("Action", null, null, null);
 		w1.Add (this.Action, null);
-		this.saveAction = new global::Gtk.Action ("saveAction", null, null, "gtk-save");
+		this.saveAction = new global::Gtk.Action ("saveAction", global::Mono.Unix.Catalog.GetString ("_Guardar"), null, "gtk-save");
+		this.saveAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Guardar");
 		w1.Add (this.saveAction, null);
 		this.saveAsAction1 = new global::Gtk.Action ("saveAsAction1", null, null, "gtk-save-as");
 		w1.Add (this.saveAsAction1, null);
+		this.ArchivoAction = new global::Gtk.Action ("ArchivoAction", global::Mono.Unix.Catalog.GetString ("Archivo"), null, null);
+		this.ArchivoAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Archivo");
+		w1.Add (this.ArchivoAction, null);
+		this.saveAsAction = new global::Gtk.Action ("saveAsAction", global::Mono.Unix.Catalog.GetString ("Guardar co_mo"), null, "gtk-save-as");
+		this.saveAsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Guardar co_mo");
+		w1.Add (this.saveAsAction, null);
+		this.stopAction = new global::Gtk.Action ("stopAction", global::Mono.Unix.Catalog.GetString ("Salir"), null, "gtk-stop");
+		this.stopAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Salir");
+		w1.Add (this.stopAction, null);
+		this.newAction = new global::Gtk.Action ("newAction", global::Mono.Unix.Catalog.GetString ("Nuevo"), null, "gtk-new");
+		this.newAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Nuevo");
+		w1.Add (this.newAction, null);
+		this.saveAction1 = new global::Gtk.Action ("saveAction1", global::Mono.Unix.Catalog.GetString ("Guardar"), null, "gtk-save");
+		this.saveAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("Guardar");
+		w1.Add (this.saveAction1, null);
+		this.saveAsAction2 = new global::Gtk.Action ("saveAsAction2", global::Mono.Unix.Catalog.GetString ("Guardar como..."), null, "gtk-save-as");
+		this.saveAsAction2.ShortLabel = global::Mono.Unix.Catalog.GetString ("Guardar como...");
+		w1.Add (this.saveAsAction2, null);
+		this.openAction1 = new global::Gtk.Action ("openAction1", global::Mono.Unix.Catalog.GetString ("Abrir archivo"), null, "gtk-open");
+		this.openAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("Abrir archivo");
+		w1.Add (this.openAction1, null);
+		this.quitAction = new global::Gtk.Action ("quitAction", global::Mono.Unix.Catalog.GetString ("Salir"), null, "gtk-quit");
+		this.quitAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Salir");
+		w1.Add (this.quitAction, null);
+		this.quitAction1 = new global::Gtk.Action ("quitAction1", global::Mono.Unix.Catalog.GetString ("_Salir"), null, "gtk-quit");
+		this.quitAction1.ShortLabel = global::Mono.Unix.Catalog.GetString ("_Salir");
+		w1.Add (this.quitAction1, null);
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
@@ -43,14 +81,23 @@ public partial class MainWindow
 		this.vBox.Name = "vBox";
 		this.vBox.Spacing = 6;
 		// Container child vBox.Gtk.Box+BoxChild
+		this.UIManager.AddUiFromString ("<ui><menubar name='menubar1'><menu name='ArchivoAction' action='ArchivoAction'><menuitem name='newAction' action='newAction'/><menuitem name='saveAction1' action='saveAction1'/><menuitem name='saveAsAction2' action='saveAsAction2'/><menuitem name='openAction1' action='openAction1'/><menuitem name='quitAction1' action='quitAction1'/></menu></menubar></ui>");
+		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
+		this.menubar1.Name = "menubar1";
+		this.vBox.Add (this.menubar1);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vBox [this.menubar1]));
+		w2.Position = 0;
+		w2.Expand = false;
+		w2.Fill = false;
+		// Container child vBox.Gtk.Box+BoxChild
 		this.labelSaludo = new global::Gtk.Label ();
 		this.labelSaludo.Name = "labelSaludo";
 		this.labelSaludo.LabelProp = global::Mono.Unix.Catalog.GetString ("Hola mundo");
 		this.vBox.Add (this.labelSaludo);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vBox [this.labelSaludo]));
-		w2.Position = 0;
-		w2.Expand = false;
-		w2.Fill = false;
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vBox [this.labelSaludo]));
+		w3.Position = 1;
+		w3.Expand = false;
+		w3.Fill = false;
 		// Container child vBox.Gtk.Box+BoxChild
 		this.hbox5 = new global::Gtk.HBox ();
 		this.hbox5.Name = "hbox5";
@@ -60,10 +107,10 @@ public partial class MainWindow
 		this.label2.Name = "label2";
 		this.label2.LabelProp = global::Mono.Unix.Catalog.GetString ("Introduce tu nombre");
 		this.hbox5.Add (this.label2);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.label2]));
-		w3.Position = 0;
-		w3.Expand = false;
-		w3.Fill = false;
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.label2]));
+		w4.Position = 0;
+		w4.Expand = false;
+		w4.Fill = false;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.entryNombre = new global::Gtk.Entry ();
 		this.entryNombre.CanFocus = true;
@@ -71,8 +118,8 @@ public partial class MainWindow
 		this.entryNombre.IsEditable = true;
 		this.entryNombre.InvisibleChar = '•';
 		this.hbox5.Add (this.entryNombre);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.entryNombre]));
-		w4.Position = 1;
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.entryNombre]));
+		w5.Position = 1;
 		// Container child hbox5.Gtk.Box+BoxChild
 		this.buttonAceptar = new global::Gtk.Button ();
 		this.buttonAceptar.CanFocus = true;
@@ -81,15 +128,15 @@ public partial class MainWindow
 		this.buttonAceptar.UseUnderline = true;
 		this.buttonAceptar.Label = "gtk-ok";
 		this.hbox5.Add (this.buttonAceptar);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonAceptar]));
-		w5.Position = 2;
-		w5.Expand = false;
-		w5.Fill = false;
-		this.vBox.Add (this.hbox5);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vBox [this.hbox5]));
-		w6.Position = 1;
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox5 [this.buttonAceptar]));
+		w6.Position = 2;
 		w6.Expand = false;
 		w6.Fill = false;
+		this.vBox.Add (this.hbox5);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vBox [this.hbox5]));
+		w7.Position = 2;
+		w7.Expand = false;
+		w7.Fill = false;
 		// Container child vBox.Gtk.Box+BoxChild
 		this.alignment1 = new global::Gtk.Alignment (0.5F, 0.5F, 1F, 1F);
 		this.alignment1.Name = "alignment1";
@@ -98,15 +145,15 @@ public partial class MainWindow
 		this.vbox3.Name = "vbox3";
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/><toolitem name='saveAsAction1' action='saveAsAction1'/></toolbar></ui>");
+		this.UIManager.AddUiFromString ("<ui><toolbar name='toolbar1'><toolitem name='newAction' action='newAction'/><toolitem name='openAction' action='openAction'/><toolitem name='saveAction' action='saveAction'/></toolbar></ui>");
 		this.toolbar1 = ((global::Gtk.Toolbar)(this.UIManager.GetWidget ("/toolbar1")));
 		this.toolbar1.Name = "toolbar1";
 		this.toolbar1.ShowArrow = false;
 		this.vbox3.Add (this.toolbar1);
-		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.toolbar1]));
-		w7.Position = 0;
-		w7.Expand = false;
-		w7.Fill = false;
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.toolbar1]));
+		w8.Position = 0;
+		w8.Expand = false;
+		w8.Fill = false;
 		// Container child vbox3.Gtk.Box+BoxChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -117,23 +164,28 @@ public partial class MainWindow
 		this.text1.Name = "text1";
 		this.GtkScrolledWindow.Add (this.text1);
 		this.vbox3.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.GtkScrolledWindow]));
-		w9.Position = 1;
+		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.GtkScrolledWindow]));
+		w10.Position = 1;
 		this.alignment1.Add (this.vbox3);
 		this.vBox.Add (this.alignment1);
-		global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.vBox [this.alignment1]));
-		w11.Position = 2;
+		global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.vBox [this.alignment1]));
+		w12.Position = 3;
 		this.Add (this.vBox);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 432;
+		this.DefaultWidth = 439;
 		this.DefaultHeight = 300;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.openAction.Activated += new global::System.EventHandler (this.OnOpenActionActivated);
 		this.saveAction.Activated += new global::System.EventHandler (this.OnSaveActionActivated);
-		this.saveAsAction1.Activated += new global::System.EventHandler (this.OnSaveAsAction1Activated);
+		this.saveAsAction1.Activated += new global::System.EventHandler (this.OnSaveAsActionActivated);
+		this.saveAsAction.Activated += new global::System.EventHandler (this.OnSaveAsActionActivated);
+		this.newAction.Activated += new global::System.EventHandler (this.OnNewActionActivated);
+		this.saveAction1.Activated += new global::System.EventHandler (this.OnSaveActionActivated);
+		this.saveAsAction2.Activated += new global::System.EventHandler (this.OnSaveAsActionActivated);
+		this.openAction1.Activated += new global::System.EventHandler (this.OnOpenActionActivated);
 		this.buttonAceptar.Clicked += new global::System.EventHandler (this.OnButtonAceptarClicked);
 	}
 }

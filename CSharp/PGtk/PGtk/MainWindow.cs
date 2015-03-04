@@ -5,6 +5,7 @@ using Gtk;
 public partial class MainWindow: Gtk.Window
 {	
 	private String filename;
+	private String content ="";
 
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
@@ -12,13 +13,15 @@ public partial class MainWindow: Gtk.Window
 		Label label = new Label ("Este lo he añadido a mano");
 		label.Visible = true;
 		vBox.Add (label);
-	}
 
+
+	}
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
 		Application.Quit ();
 		a.RetVal = true;
 	}
+
 
 	protected void OnButtonAceptarClicked (object sender, EventArgs e)
 	{
@@ -28,6 +31,19 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnOpenActionActivated (object sender, EventArgs e)
 	{
+		if (!content.Equals (text1.Buffer.Text)) {
+			MessageDialog messageDialog = new MessageDialog (
+				this,
+				DialogFlags.DestroyWithParent,
+				MessageType.Question,
+				ButtonsType.YesNo,
+				"Hay cambios sin guardar. ¿Descartar cambios");
+			ResponseType response = (ResponseType)messageDialog.Run ();
+			messageDialog.Destroy ();
+			if (response != ResponseType.Yes)
+				return;
+		}
+
 		FileChooserDialog fileChooserDialog = new FileChooserDialog (
 			"Elige una opcion",
 			this,
@@ -51,7 +67,7 @@ public partial class MainWindow: Gtk.Window
 			File.WriteAllText (filename,text1.Buffer.Text);
 	}
 	
-	protected void OnSaveAsAction1Activated (object sender, EventArgs e)
+	protected void OnSaveAsActionActivated (object sender, EventArgs e)
 	{
 		saveAs ();
 	}
@@ -69,4 +85,28 @@ public partial class MainWindow: Gtk.Window
 
 		fileChooserDialog.Destroy();
 	}
+
+
+	protected void OnNewActionActivated (object sender, EventArgs e)
+	{
+		if (!content.Equals (text1.Buffer.Text)) {
+			MessageDialog messageDialog = new MessageDialog (
+				this,
+				DialogFlags.DestroyWithParent,
+				MessageType.Question,
+				ButtonsType.YesNo,
+				"Hay cambios sin guardar. ¿Descartar cambios");
+			ResponseType response = (ResponseType)messageDialog.Run ();
+			messageDialog.Destroy ();
+			if (response != ResponseType.Yes)
+				return;
+		}
+		text1.Buffer.Text = "";
+		filename = null;
+	}
+
+	protected void OnQuitAction1Activated (object sender, DeleteEventArgs e)
+	{
+		Application.Quit ();
+		e.RetVal = true;}
 }
